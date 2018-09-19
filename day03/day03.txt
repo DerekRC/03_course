@@ -25,6 +25,65 @@
 
 
 
+AngularJs
+1.什么是angularJs？
+  是一个前端框架，angularjs是以数据和逻辑为核心(驱动)的
+  案例1：
+    01_rumen.html
+    在文本框中输入数据，文本框的下方显示文本框中输入的数据
+2.angularjs的表达式
+  {{表达式}}
+  表达式可以包含变量，有算数运算，逻辑运算，关系运算，三目运算，字符串拼接
+  02_biaodashi.html
+3.设计模式MVC
+  M:Model       模型层，数据层，用于跟数据库进行操作
+  V:View        视图层，用于展示数据，一般通过html展示
+  C:Controller  控制层，用于模型层与视图层之间的连接
+4.AngularJs的模块化概念(module)
+  angularjs构建一个应用程序是以模块化的方式组织的
+  03_module.html
+  步骤：
+    1）引入angularjs文件
+    <!-- 引入angularjs文件 -->
+    <script src="../libs/angular.min.js"></script>
+    2）定义ng-app
+      定义应用名称
+      在body标签添加属性ng-app=“app”
+      <body ng-app="app">
+    3）定义模块
+      var app = angular.module("app",[]);
+    4）定义控制器
+      app.Controller("ctrl",["$scope",function($scope){
+
+      }])
+    5）编写视图(挖坑填坑)
+
+    练习：
+      1.新建html文件
+      2.定义模块，定义控制器
+      3.在控制器中绑定数据
+        字符串，数字，数组，对象
+      4.在视图层中将这些数据全部展示出来
+      5.显示数组中的第一个元素
+      6.显示对象中key为name的值
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
