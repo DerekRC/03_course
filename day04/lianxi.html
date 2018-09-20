@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+  <style>
+    .bgc{
+      background:skyblue;
+    }
+  </style>
+</head>
+
+<body ng-app='app'>
+  <div>
+    <ul ng-controller="ctrl">
+      <li>
+        <input type="checkbox">11
+        <input type="checkbox" ng-checked="true">22
+        <input type="checkbox">33
+      </li>
+      <li>
+        <img ng-src="{{path}}">
+      </li>
+      <li>
+        <select ng-model="val">
+          <option value="1">html</option>
+          <option value="2">css</option>
+          <option value="3">js</option>
+        </select>
+      </li>
+      <li>
+        <ul ng-switch="val">
+          <li ng-switch-when="1">html初级</li>
+          <li ng-switch-when="1">html中级</li>
+          <li ng-switch-when="1">html高级</li>
+          <li ng-switch-when="3">js初级</li>
+          <li ng-switch-when="3">js中级</li>
+          <li ng-switch-when="3">js高级</li>
+          <li ng-switch-when="2">css初级</li>
+          <li ng-switch-when="2">css中级</li>
+          <li ng-switch-when="2">css高级</li>
+        </ul>
+      </li>
+      <li>{{num}}</li>
+      <li>{{str}}</li>
+      <li>{{obj}}</li>
+      <li>{{arr}}</li>
+      <li ng-repeat="a in arr"  ng-hide="$index==2">
+        <div ng-class="{bgc:$index==color}">{{a}}</div>
+      </li>
+    </ul>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope",function($scope){
+    
+    $scope.path ="../day03/feijitou.jpg";
+    $scope.num = 12;
+    $scope.str = '嘿嘿嘿';
+    $scope.obj = {a:'b',c:'d'};
+    $scope.arr = ['十多个','水电工','适当'];
+    $scope.color = 1;
+  }]);
+</script>
+
+</html>
+<!-- 1:设置3个多选框，默认选择第二个
+  2:使用ng-src引用一张图片，路径通过模型层获取
+  3.使用ng-switch实现效果
+    选择html，下方以列表显示：html初级 html中级 html高级
+    选择css，下方一列表显示，css初级，css中级，css高级
+    选择js，下方以列表显示，js初级，js中级，js高级
+  4.在模型层绑定数据：num str obj arr color
+    显示num，str，obj，arr的值
+    遍历arr的所有元素，同时给第二个元素添加背景色 -->

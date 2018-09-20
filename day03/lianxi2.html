@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta harset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <ul>
+    <li>{{str}}</li>
+    <li>{{num}}</li>
+    <li>{{arr}}</li>
+    <li>{{obj}}</li>
+    <li>{{arr[0]}}</li>
+    <li>{{obj.name}}</li>
+  </ul>
+  </div>
+  
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",['$scope',function($scope){
+    $scope.str = "111";
+    $scope.num = 222;
+    $scope.arr = ['3','3','3'];
+    $scope.obj = {name:'4',age:'5'}
+  }]);
+</script>
+
+</html>
