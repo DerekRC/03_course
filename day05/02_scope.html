@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <style>
+    body{
+      font-family: "微软雅黑";
+    }
+    .blue{
+      background:blue;
+    }
+  </style>
+  <script src='../libs/angular.min.js'></script>
+</head>
+<body ng-app='app' ng-init="global='全局'">
+  控制器外面：{{global}}
+  <div>控制器外调用sex:{{sex}}</div>
+  <h3>控制器1</h3>
+  <div ng-controller="ctrl1" ng-init="age=23">
+    <div>name:{{name}}</div>
+    <div>age:{{age}}</div>
+    <div>global:{{global}}</div>
+    <div>控制器1调用sex:{{sex}}</div>
+  </div>
+  <h3>控制器2</h3>
+  <div ng-controller="ctrl2" ng-init="age=45">
+      <div>name:{{name}}</div>
+      <div>age:{{age}}</div>
+      <div>global:{{global}}</div>
+      <div>控制器2调用sex:{{sex}}</div>
+      <div><button ng-click="change()">点击改变性别</button></div>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl1",["$scope","$rootScope",function($scope,$rootScope){
+    $scope.name = "张三";
+    $rootScope.sex = "女";
+  }]);
+  app.controller("ctrl2",["$scope","$rootScope",function($scope,$rootScope){
+    $scope.name = "Jim";
+    $scope.change = function(){
+      $rootScope.sex = "大傻逼";
+      $rootScope.color = 1;
+    }
+  }]);
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  {{"akjsgfas"| selfFilter}}
+</body>
+<script>
+  var app = angular.module('app', []);
+  //创建自定义过滤器
+  //通过调用filter方法
+  //将过滤的数据改成首字母大写
+  app.filter("selfFilter",function(){
+    return function(str){
+      //处理传递进来的字符串
+      var arr = str.split("");
+      arr[0] = arr[0].toUpperCase();
+      return arr.join("");
+    }
+  });
+</script>
+
+</html>

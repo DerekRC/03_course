@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+<body ng-app='app'>
+   <!--  练习：
+    1在文本框中输入数据 文本框下方同时显示2行
+    一行全部转大写，一行全部转小写
+    2.过滤字符串'abcdefg'，截取后5位，并将其转成大写
+    3.在文本框中输入数字，文本框下方实现该数字
+      保留到小数点后一位
+    4.显示当前时间 格式：2018年9月21日15点25时26分
+    5.定义一个对象数组、
+      将数组排序，分别：
+          按照id升序，降序
+          按照age降序排序，年龄相同时，id升序排序
+    6.显示数组中，名字包含a的人的信息 -->
+    <ul ng-controller="ctrl">
+      <li>
+        <input type="text" ng-model="msg">
+        {{msg|uppercase}}<br>
+        {{msg|lowercase}}
+      </li>
+      <li>
+        {{str | limitTo:-5 | uppercase}}
+      </li>
+      <li>
+        <input type="text" ng-model="num">
+        {{num | number:1}}
+      </li>
+      <li>
+        按照id升序:{{stus | orderBy:'+id'}}<br>
+        按照id降序:{{stus | orderBy:'-id'}}<br>
+        按照age降序:{{stus | orderBy:'-age'}}<br>
+        按照age降序:{{stus | orderBy:['-age','+id']}}<br>
+      </li>
+      <li>
+        {{time | date:"yyyy年MM月dd日 HH点mm分ss秒"}}
+      </li>
+      <li ng-repeat='n in stus| filter:{name:"a"}'>
+        {{n}}
+      </li>
+    </ul>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope",function($scope){
+    $scope.msg = "";
+    $scope.str = "abcdefg";
+    $scope.num = "";
+    $scope.stus = [
+      {id:101,name:"Mike",age:22,grade:"a"},
+      {id:103,name:"Jack",age:22,grade:"b"},
+      {id:105,name:"Rose",age:24,grade:"c"},
+      {id:102,name:"Allen",age:24,grade:"a"},
+      {id:104,name:"Lily",age:22,grade:"b"}
+    ]
+    $scope.time = new Date();
+  }]);
+</script>
+</html>

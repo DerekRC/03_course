@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl1">
+    {{msg}}
+  </div>
+  <div ng-controller="ctrl2">
+    {{msg}}
+    </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  //行内注入
+  app.controller("ctrl1",["$scope",function($scope){
+    $scope.msg = "sbcdefg";
+  }])
+  //推断式注入
+  app.controller("ctrl2",function($scope){
+    $scope.msg = "123456";
+  });
+  //inject注入
+ 
+  var a = function(b){
+    b.data = "inject注入"
+  }
+  //注入依赖
+  a.$inject = ["$scope"];
+  //定义控制器 将注入依赖后的function传递进去
+  app.controller("ctrl3",a);
+</script>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+<body ng-app='app'>
+  <ul ng-controller="ctrl">
+    <li>
+      uppercase:{{message|uppercase}}
+    </li>
+    <li>
+      lowercase:{{message|lowercase}}
+    </li>
+    <li>date:{{time | date:"yyyy-MM-dd HH:mm:ss"}}</li>
+    <li>currency:{{money | currency}}<br>{{money | currency:"¥"}}</li>
+    <li>{{obj}}
+      json:{{obj | json}}
+    </li>
+    <li>
+      {{names | filter:''}}
+    </li>
+    <li>
+      limitTo:{{message | limitTo:4}}<br>
+      limitTo:{{message | limitTo:-5}}<br>
+      limitTo:{{names | limitTo:2}}<br>
+      limitTo:{{names | limitTo:-2}}<br>
+      limitTo:{{names | limitTo:-9}}<br>
+
+    </li>
+    <li>
+        orderBy:<br>
+        正序：{{nums | orderBy:"+"}}<br>
+        倒序：{{nums | orderBy:"-"}}<br>
+        正序：{{names | orderBy:"+"}}<br>
+        倒序：{{names | orderBy:"-"}}<br>
+        正序：{{stus | orderBy:['id','age']}}<br>
+        倒序：{{stus | orderBy:'age':true}}<br>
+    </li>
+  </ul>
+</body>
+<script>
+  
+  var app = angular.module('app', []);
+  app.controller("ctrl",["$scope",function($scope){
+    $scope.message = "good good study,day day up";
+    $scope.time = new Date();
+    $scope.money = 25;
+    $scope.obj = new Object();
+    $scope.obj.name = "阎婆惜";
+    $scope.obj.age = 23;
+    $scope.names = ['zhangsan','lisi','jackie','alien','rose']
+    $scope.nums = [4,5,8,7,6]
+    $scope.stus = [
+      {id:104,name:"Mike",age:23},
+      {id:103,name:"Jack",age:24},
+      {id:105,name:"Rose",age:25},
+      {id:102,name:"Alien",age:26},
+      {id:101,name:"Lily",age:19},
+    ]
+  }]);
+</script>
+</html>

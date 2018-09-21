@@ -9,9 +9,27 @@
 </head>
 <body ng-app='app'>
   <div>
-    <ul>
-      <li ng-show="0">ng-show</li>
-      <li ng-hide="">ng-hide</li>
+    <ul ng-controller="ctrl">
+      <li ng-show='show'>ng-show</li>
+      <li ng-hide='show'>ng-hide</li>
+      <li ng-if='if'>ng-if</li>
+      <li ng-bind="msg">不论写什么都是嘿嘿嘿</li>
+      <li>{{msg}}</li>
+      <li>
+        <input type="radio" name="gender" value="M" ng-checked="sex=='M'">男
+        <input type="radio" name="gender" value="F" ng-checked="sex=='F'">女
+      </li>
+      <li>
+        <img ng-src="{{path}}">
+      </li>
+      <li ng-repeat="k in arr">
+        {{k}}
+      </li>
+      <li>
+        <div ng-class=""></div>
+      </li>
+      <li></li>
+      <li></li>
       <li></li>
       <li></li>
       <li></li>
@@ -21,8 +39,14 @@
 </body>
 <script>
   var app = angular.module('app', []);
-  app.controller("ctrl",["scope",function($scope){
+  app.controller("ctrl",["$scope",function($scope){
     $scope.show = true;
+    $scope.hide= false;
+    $scope.if = false;
+    $scope.msg = "嘿嘿嘿";
+    $scope.sex = 'M';
+    $scope.path = "./feijitou.jpg";
+    $scope.arr = ['东','南','西','白'];
   }]);
 </script>
 </html>
