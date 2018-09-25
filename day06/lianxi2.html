@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+  <style>
+    table{
+      border:1px solid red;
+
+    }
+  </style>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <div>随机数:{{num}}</div>
+    <div>{{time}}</div>
+    <button ng-click="click()">点击按钮</button>
+    <div>
+      <button ng-click="send()">点击发送</button>
+    </div>
+    <div>
+      <table cellpadding='0' cellspacing='0' width="300px">
+        <tr>
+          <td>学号</td>
+          <td>姓名</td>
+          <td>性别</td>
+        </tr>
+        <tr ng-repeat="student in students">
+          <td>{{student.id}}</td>
+          <td>{{student.name}}</td>
+          <td>{{student.sex=='M'?'男':'女'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$filter,$interval,$http){
+    $interval(function(){
+      $scope.num = Math.floor(Math.random()*100)+1;
+    },1000);
+    var id =0;
+    var date = $filter("date")
+    $scope.click = function(){
+      //判断id是否有值，如果有，说明之前已经生产了一个计时器id，应该先关闭，如果没有，说明之前没有有效的计时器，可以生产新的计时器
+      if(!id){//id没有值 生产新的计时器
+        id = $interval(function(){
+          $scope.time =date(new Date(),"yyyy-MM-dd HH-mm-ss")
+         
+          },1000);
+      }else{//id有值，清除id值，停止计时器
+        $interval.cancel(id);
+        id =null;
+      }
+     
+    }
+   
+    $scope.send = function(){
+      // alert();
+      $http({
+        url:"./stu.php"
+      }).success(function(result){
+        console.log(result)
+        $scope.students = result;//将返回的数据绑定到students变量上
+
+      })
+    }
+   
+  });
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    {{show}}
+    {{str}}
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  //调用slef服务
+  app.controller("ctrl",["$scope","self",function($scope,self){
+    $scope.show = self.now();
+    $scope.str = self.str("abfvasdif");
+  }]);
+  //自定义服务--service
+  //通过app调用service方法
+  /*
+    service方法有2个参数
+    第一个字符串表示自定义服务的名称
+    第二个数组，表示自定义服务以来的对象以及自定义服务的具体内容，
+    如果使用推断式注入，则第二个参数就是一个function
+  */
+  //定义一个方法，用于返回当前已经格式化的时间
+  // app.service("self",["filter",function($filter){}])
+  //推断式注入
+  app.service("self",function($filter){
+    var d = $filter("date");
+    //定义返回当前时间的方法
+    this.now = function(){
+      return d(new Date(),"yyyy-MM-dd HH:mm:ss");
+    }
+    //将字符串改为大写
+    this.str = function(msg){
+      return msg.toUpperCase();
+    }
+  });
+</script>
+
+</html>

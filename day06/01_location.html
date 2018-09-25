@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <ul>
+      <li>绝对路径:{{absUrl}}</li>
+      <li>相对路径:{{url}}</li>
+      <li>主机名:{{host}}</li>
+      <li>端口号:{{port}}</li>
+      <li>协议:{{protocol}}</li>
+      <li>参数:</li>
+    </ul>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$location){
+    //地址的格式
+    console.log($location);
+    $scope.absUrl = $location.absUrl();
+    $scope.url = $location.url();
+    $scope.host = $location.host();
+    $scope.port = $location.port();
+    $scope.protocol = $location.protocol();
+    
+  });
+</script>
+
+</html>

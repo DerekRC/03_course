@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    {{now}}<br>
+    {{num}}<br>
+    {{pi}}
+    
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,self, PI){
+    $scope.now = self.getDate();
+    $scope.num = self.getRand();
+    $scope.pi =  PI;
+  });
+
+  //factory
+  /*
+    app调用factory方法
+    第一个参数：字符串，表示名称
+    第二个参数：表示依赖关系，推断式注入直接写function
+    。表示具体内容
+  */
+
+  app.factory("self",function($filter){
+    var d = $filter("date");
+    //定义方法
+    function getDate(){
+      return d(new Date(),"yyyy-MM-dd HH:mm:ss");
+    }
+    function getRand(){
+      //获取随机数
+      return Math.random();
+    }
+    //将上面定义的function返回
+    return{
+      getDate:getDate,
+      getRand:getRand
+    }
+  });
+
+  //value 设置不变值
+  app.value("PI",3.1415);
+</script>
+
+</html>

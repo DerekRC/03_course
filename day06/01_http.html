@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+<button ng-click="send()">点击发送</button>
+<button ng-click="send2()">有参get点击发送</button>
+  </div>
+
+
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$http){
+
+
+    //有参的get请求
+    $scope.send2 = function(){
+      $http({
+        url:"./data2.php",
+        params:{"name":"唐三"}
+      }).success(function(result){
+        //result是从服务器获取的结果
+        console.log(result);
+      });
+    }
+    $scope.send = function(){
+      //alert("发送请求");
+      //发送http请求
+      //无参的get请求 
+      $http({
+        url:"./data.php"
+      }).success(function(result){
+        //result是从服务器获取的结果
+        console.log(result);
+      });
+    }
+  });
+</script>
+
+
+</html>

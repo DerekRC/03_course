@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-controller="ctrl">
+    <div>{{show1}}</div>
+    <div>{{show2}}</div>
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  //$filter服务，可以当成9种过滤器中的任意一种来使用
+  app.controller("ctrl",function($scope,$filter){
+    //先获取某个过滤器的功能
+    // var upper = $filter("uppercase")
+    // $scope.show1 = upper("abcf");
+    $scope.show1 = $filter("uppercase")("abcfasdasd");
+        
+    //显示格式化后的时间
+    var format = $filter("date");
+    $scope.show2 = format(new Date(),"yyyy-MM-dd HH:mm:ss");
+  });
+</script>
+
+</html>

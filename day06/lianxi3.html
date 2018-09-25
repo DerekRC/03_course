@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+  
+<body ng-app='app'>
+    <div ng-controller="ctrl">
+        <button ng-click="click()">点击抽奖</button>
+        {{num}}
+        <!-- <input type="text" ng-change="change()"> -->
+      </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($scope,$interval){
+    $scope.click = function(){
+      $interval(function(){
+        for(var a=0;a<5;a++){
+          $scope.num = parseInt(Math.random()*100);
+          
+        }
+      },1000)
+    }
+    
+    
+  });
+</script>
+
+</html>
