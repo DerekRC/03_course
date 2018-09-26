@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+  <script src='../libs/angular-route.js'></script>
+  <style>
+  ul{list-style:none}
+  table{
+      border:1px solid red;
+
+    }
+  </style>
+</head>
+
+<body ng-app='app'>
+  <a href="#a">aaaa</a>
+  <a href="#b">bbbb</a>
+  <a href="#c">cccc</a>
+  <div ng-view></div>
+</body>
+<script>
+  //创建应用时，添加依赖：路由模块
+  //应为该应用使用了路由，对路由模块产生了依赖关系
+  var app = angular.module('app', ["ngRoute"]);
+  
+  app.controller("ctrl",function($scope){
+    $scope.students = [
+        {"id":101,"name":"Jack","sex":"M"},
+        {"id":102,"name":"Mike","sex":"M"},
+        {"id":103,"name":"Lucy","sex":"F"},
+        {"id":104,"name":"Allen","sex":"F"},
+        {"id":105,"name":"Rose","sex":"F"},
+        {"id":106,"name":"Tom","sex":"M"}
+]
+  });
+  //配置路由
+  /*
+    路由模块的配置
+  */
+  app.config(["$routeProvider",function($routeProvider){
+    $routeProvider.when("/",{
+      template:"这是首页"
+    }).when("/a",{
+      template:"<h1>这是a的内容</h1>"
+    }).when("/b",{
+      templateUrl:"./view.html"
+    }).when("/c",{
+      templateUrl:"./show.html",
+      controller:"ctrl"
+    }).otherwise({
+      //对前面when补充，当前面处理不了时，就由otherwise处理
+      redirectTo:"/"
+    })
+  }]);
+</script>
+
+</html>

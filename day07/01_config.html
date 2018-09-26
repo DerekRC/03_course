@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+</head>
+
+<body ng-app='app'>
+  {{'abvas' | uppercase}}<br>
+  {{'asjf' | initcase}}
+  <div ng-controller="ctrl">
+
+  </div>
+</body>
+<script>
+  var app = angular.module('app', []);
+  app.controller("ctrl",function($log){
+    $log.debug('debug信息');
+    $log.info('info信息');
+    $log.warn('warn信息');
+  });
+  //配置$filter服务
+  /*
+    只有一个数组参数，表示依赖的对象以及配置的具体内容
+  */
+  app.config(['$filterProvider','$logProvider',function($filterProvider){
+    //禁用debug
+    // $logProvider.debugEnabled(flase);
+    
+    //注册一个新的过滤器  首字母大写
+    $filterProvider.register("initcase",function(){
+      return function(str){
+        return str[0].toUpperCase()+str.slice(1);
+      }
+    });
+  }]);
+
+</script>
+
+</html>

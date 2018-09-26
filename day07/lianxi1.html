@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+  <script src='../libs/angular-route.js'></script>
+</head>
+<!-- 练习1：
+    1.页面设置3个超链接， 首页 信息页 错误页
+    2.点击3个超链接时，分别显示不同的内容
+        首页：显示这是首页
+        信息页：使用视图显示视图中的表格，数据在控制器中绑定
+        错误页：显示错误信息：地址错误，点击返回
+          点击返回链接时，页面显示 这是首页 -->
+
+<body ng-app='app'>
+  <a href="#/a">首页</a>
+  <a href="#/b">信息页</a>
+  <a href="#/c">错误页</a>
+  <!-- ng-view:展示视图或数据 -->
+  <div ng-view></div>
+</body>
+<script>
+  var app = angular.module('app', ["ngRoute"]);
+  app.controller("ctrl",function($scope){
+    $scope.students = [
+        {"id":101,"name":"Jack","sex":"M"},
+        {"id":102,"name":"Mike","sex":"M"},
+        {"id":103,"name":"Lucy","sex":"F"},
+        {"id":104,"name":"Allen","sex":"F"},
+        {"id":105,"name":"Rose","sex":"F"},
+        {"id":106,"name":"Tom","sex":"M"}
+]
+  });
+  app.config(function($routeProvider){
+    $routeProvider.when("/",{
+      redirectTo:"/a"
+    }).when("/a",{
+      template:"<font style='font-size:100px'>这是首页</font>"
+    }).when("/b",{
+      templateUrl:"./show.html",
+      controller:"ctrl"
+    }).when("/c",{
+      template:"错误页面，点击<a href='#/a'>返回</a>"
+    })
+  });
+</script>
+
+</html>

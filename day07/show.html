@@ -1,0 +1,12 @@
+<table  cellpadding='0' cellspacing='0' width="300px" >
+  <tr>
+    <td>学号</td>
+    <td>姓名</td>
+    <td>性别</td>
+  </tr>
+  <tr ng-repeat="student in students">
+      <td>{{student.id}}</td>
+      <td>{{student.name}}</td>
+      <td>{{student.sex=='M'?'男':'女'}}</td>
+    </tr>
+</table>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab 标签</title>
+    <style>
+
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #F7F7F7;
+		}
+	
+		.tabs {
+			width: 400px;
+			margin: 30px auto;
+			background-color: #FFF;
+			border: 1px solid #C0DCC0;
+			box-sizing: border-box;
+		}
+
+		.tabs nav {
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			overflow: hidden;
+			background-color: #C0DCC0;
+			display: flex;
+		}
+
+		nav a {
+			display: block;
+			width: 100px;
+			border-right: 1px solid #FFF;
+			color: #000;
+			text-decoration: none;
+		}
+
+		nav a:last-child {
+			border-right: 0 none;
+		}
+
+		nav a.active {
+			background-color: #9BAF9B;
+		}
+
+		.cont {
+			overflow: hidden;
+			/*display: none;*/
+		}
+
+		.cont ol {
+			line-height: 30px;
+		}
+
+    </style>
+
+    <!--[if lte IE 6]>
+    	
+    <![endif]-->
+
+</head>
+<body ng-app="app">
+
+	<div class="tabs">
+		<nav>
+			<a href="#/1" >国内新闻</a>
+			<a href="#/2" >国际新闻</a>
+			<a href="#/3" >体育新闻</a>
+			<a href="#/4" >娱乐新闻</a>
+		</nav>
+		<div>
+			<section class="cont" ng-view></section>
+		</div>
+    </div>
+</body>
+<script src='../libs/angular.min.js'></script>
+<script src='../libs/angular-route.js'></script>
+<script>
+ var app = angular.module('app', ["ngRoute"]);
+
+ app.config(["$routeProvider",function($routeProvider){
+   $routeProvider.when("/",{
+     redirectTo:"/1"
+   }).when("/1",{
+      templateUrl:"./tabsViews/1.html"
+   }).when("/2",{
+    templateUrl:"./tabsViews/2.html"
+   }).when("/3",{
+    templateUrl:"./tabsViews/3.html"
+   }).when("/4",{
+    templateUrl:"./tabsViews/4.html"
+   })
+ }]);
+</script>
+</html>

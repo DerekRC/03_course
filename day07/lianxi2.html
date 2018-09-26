@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../index/libs/angular.min.js'></script>
+  <script src='../index/libs/angular-route.js'></script>
+  <style>
+   
+  </style>
+</head>
+<!-- 练习1： 
+  页面设置2个按钮 圆形 方形，点击分别显示不同的图形
+      点击圆形，显示红色圆
+      点击方形，显示蓝色方 -->
+<body ng-app='app'>
+    <div ng-view>
+    </div>
+    <a href="#/a">圆形</a>
+    <a href="#/b">方形</a>
+</body>
+<script>
+  var app = angular.module('app', ["ngRoute"]);
+  
+
+  app.config(["$routeProvider",function($routeProvider){
+    $routeProvider.when("/",{
+      redirectTo:"/a"
+    }).when("/a",{
+      templateUrl:"./y.html"
+    }).when("/b",{
+      templateUrl:"./f.html"
+    })
+  }]);
+</script>
+
+</html>

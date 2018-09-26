@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='../libs/angular.min.js'></script>
+  <script src='../libs/angular-route.js'></script>
+</head>
+
+<body ng-app='app'>
+  <div ng-view></div>
+</body>
+<script>
+  var app = angular.module('app', ['ngRoute']);
+
+  app.controller("ctrl",function($scope,$routeParams){
+    console.log($routeParams);
+    //获取参数值
+    //使用$routeParams 去电路由配置中：后面的属性名
+    $scope.params = $routeParams.name;
+  });
+
+
+  //配置路由
+  app.config(["$routeProvider",function($routeProvider){
+    $routeProvider.when("/",{
+      template:"<h1>INDEX</h1>"
+    }).when("/a/:id",{
+      template:"a请求返回的"
+    }).when("/b/:name/:age",{
+      templateUrl:"./params.html",
+      controller:"ctrl"
+    })
+  }]);
+</script>
+
+</html>
