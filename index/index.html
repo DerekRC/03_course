@@ -40,17 +40,18 @@
 		var id = $routeParams.id;
 		console.log(id);
 		$http({
-			url:"./api/list.php"
+			url:"./api/list.php?id="+id
 		}).success(function(result){
 			// $scope.music = result;
 			//筛选数据
-			var music = [];//空数组，用于保存符合条件的数据
-			for(var i=0;i<result.length;i++){
-				if(id==result[i].pid){
-					music.push(result[i]);
-				}
-			}
-			$scope.music = music;
+			// var music = [];//空数组，用于保存符合条件的数据
+			// for(var i=0;i<result.length;i++){
+			// 	if(id==result[i].pid){
+			// 		music.push(result[i]);
+			// 	}
+			// }
+			// $scope.music = music;
+			$scope.music = result;
 		});
 	}]);
 </script>

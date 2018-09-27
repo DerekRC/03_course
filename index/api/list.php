@@ -42,7 +42,31 @@
 		array('id'=>39, 'pid'=>4, 'text'=>'君をのせて'),
 		array('id'=>40, 'pid'=>1, 'text'=>'恋恋风尘')
 	);
-
-	echo json_encode($list);
+	//返回所有数据，无用数据太多，同时也增加了浏览器的负担
+	// echo json_encode($list);
 	//循环遍历$lisr,选出符合条件的数据返回
+	// 接收请求参数
+	$id = $_GET["id"];//接收的参数:1.2.3.4
+	// 遍历数组，保留符合条件的数据
+	// 数据中的PID的值与参数$id的值一样
+	//定义一个空数组，保存符合条件的数据
+	$result = array();
+	//获取$list的长度
+	
+	$num = count($list);
+	//循环遍历
+	// for($i=0;$i<$num;$i++){
+	// 	//判断每一个元素的pid的值是否与$id相等
+	// 	if($list[$i]["pid"]==$id){
+	// 		//将该元素放入$result中
+	// 		$result[] = $list[$i];
+	// 	}
+	// }
+	while(list($k,$v)=each($list)){
+		if($v["pid"]=$id){
+			$result[] =$v;
+		}
+	}
+	//将$result数组返回
+	echo json_encode($result);
 ?>
