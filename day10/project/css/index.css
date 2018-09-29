@@ -1,0 +1,10 @@
+.d1{
+  border-radius:50%;
+  background:red;
+  width:100px;height:100px;
+}
+.d2{
+  border-radius: 50%;
+  width:50px;height:100px;
+  background:#fff;
+}
