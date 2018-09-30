@@ -1,0 +1,49 @@
+1.使用formidable模块处理post请求
+
+
+2.模版引擎
+  <%= name %>
+  前端模版:template模版
+  <% for语句/if语句/while语句 %>
+  <%= 变量名 %>
+
+  后台模版:ejs,jade(nodejs默认的模版引擎)
+  下载 ejs 
+   02_ejs.js
+
+   02_ejs_2.js//模拟可填充的数据类型
+
+   02_ejs_3.js//模拟从浏览器访问，服务器填充数据
+
+3.Express框架
+  基于NodeJs平台，快速，开放，极简的web开发框架
+
+  原生nodejs有如下三个问题：
+    1.呈现静态页面不方便,需要单独处理每一个http请求
+    2.路由处理代码不直观，
+    3.不能集中精力写业务，需要考虑很多其他的东西
+    express的三个常用方法
+      1.静态文件伺服能力 
+      2.路由功能很强大
+      3.模版功能
+    1）模版功能
+      03_express.js
+      express模版功能，需要设置视图模版引擎
+      因为nodejs默认的模版引擎是jade
+      app.set("view engine","ejs");
+
+      视图模版文件存放在固定文件夹中 views
+      视图模版文件是ejs后缀名
+
+练习：
+  使用express创建服务
+  模拟数据 data ={stus:['jack','rose','mike','jerry']}
+  编写ejs视图，模版
+  访问/显示  这是首页
+  访问/info  以列表显示每个人的姓名
+
+
+
+
+
+
