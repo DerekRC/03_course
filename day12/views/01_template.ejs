@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>学生信息:</h1>
+  <!--
+    页面从服务器获取数据(一个 学生信息的 数组)
+    循环遍历数组，以表格的形式显示
+    
+   -->
+   <table>
+    <tr>
+      <td>学号</td>
+      <td>姓名</td>
+      <td>性别</td>
+    </tr>
+    <% for(var i=0;i<stus.length;i++){ %>
+        <tr>
+            <td><%= stus[i].id %></td>
+            <td><%= stus[i].name %></td>
+            <td><%= stus[i].sex %></td>
+          </tr>
+    <% } %>
+   </table>
+</body>
+</html>
