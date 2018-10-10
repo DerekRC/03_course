@@ -1,0 +1,26 @@
+项目结构:
+    public
+      存放公共文件(css,js,img)
+    scripts
+      自己定义的js脚本文件
+    uploads
+      上传图片保存的路径
+    views
+      视图模板存放路径
+    app.js
+      服务器启动文件
+    package.json
+      自动生成的,配置文件
+
+1. 下载需要的模块
+    express
+    ejs
+    silly-datetime
+    formidable
+
+2. 创建服务器
+
+
+
+
+

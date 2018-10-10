@@ -1,0 +1,19 @@
+{
+  "name": "photos",
+  "version": "1.0.0",
+  "description": "nodejs first little project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "formidable": "^1.2.1",
+    "rimraf": "^2.6.2",
+    "silly-datetime": "^0.1.2"
+  }
+}
