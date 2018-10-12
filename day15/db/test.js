@@ -1,13 +1,18 @@
 var db = require('./db.js');
 
-//删除数据
-var filter ={id:111};
-
-
-db.del("stu",filter,function(err,result){
+db.find('student',{size:{$lt:5}},function(err,docs){
   console.log(err);
-  console.log(result);
-});
+  console.log(docs.length);
+})
+
+// //删除数据
+// var filter ={id:111};
+
+
+// db.del("stu",filter,function(err,result){
+//   console.log(err);
+//   console.log(result);
+// });
 
 // //测试修改数据
 // var filter = {id:111};
@@ -24,10 +29,10 @@ db.del("stu",filter,function(err,result){
 //   console.log(result);
 // });
 
-db.findAll("student",function(err,docs){
-  if(err){
-    console.log(err);
-  }else{
-    console.log(docs);
-  }
-});
+// db.findAll("student",function(err,docs){
+//   if(err){
+//     console.log(err);
+//   }else{
+//     console.log(docs);
+//   }
+// });

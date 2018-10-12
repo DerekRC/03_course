@@ -56,7 +56,7 @@ exports.add = function(collection,data,callback){
     }else{
       var coll = client.db(dbName).collection(collection);
       //插入数据
-      coll.insertOne(data,function(err,result){
+        coll.insertOne(data,function(err,result){
         console.log(result);
         callback(err,result);
         client.close();
@@ -111,7 +111,79 @@ exports.del = function(collection,filter,callback){
   })
 }
 
+/**
+ *查询制定条件的数据
+ *
+ * @param {string} collection  集合名称
+ * @param {JSON} [filter]      查询的条件        
+ * @param {JSON} [option]      查询的选项
+ * @param {number} [option.start] 查询开始的页数
+ * @param {number} [option.size] 每页显示的条数
+ * @param {object} [option.order] 排序的依据
+ * @param {function} callback     回调
+ */
+exports.find = function(collection,filter,option,callback){
+  //判断参数的个数
+  if(arguments.length==2){
+    //第一个表示集合，第二个表示回调
+    //将回调函数重新复制给callback，并将filter设置为默认值
+    callback = filter;
+    filter = {};
+    //设置option的默认值
+    //从第一页开始查看，每页显示5条信息，按时间降序排列 离现在最近的排在上面，最远的排在最下面
+    option = {start:1,size:5,order:{time:-1}};
+  }else if(arguments.length==3){
+    //第一个表示集合，第三个表示回调
+    callback = option;//将回调赋值给callback
+    option = {};//option重置
+    //给option赋值，如果filter中是参数，就选值赋值
+    option.start = filter.start||1;
+    option.size = filter.size||5;
+    option.order = filter.order||{time:-1};
+    //判断重新复制后的option与默认值option是否一致
+    //一致，表示filter中没有取到对应的值，filter是查询条件
+    //不一致，说明从filter中取到的值，filter是查询参数
+    //将查询条件设置为默认值{}；
+    //或者:判断filter中是否函数start，size，order中的一个或者多个属性，若一个都没有，说明filter是查询条件；
+    if(filter.start!=undefined||filter.size!=undefined||filter.order!=undefined){
+      filter = {};
+    }
+  }else if(arguments.length==4){
+    //4个参数，参数一一对应
+    //其他参数使用传递进来的值，option需要判断一下
+    option.start = option.start||1;
+    option.size = option.size||5;
+    option.order = option.order||{time:-1};
+  }
+  console.log(collection);
+  console.log(filter);
+  console.log(option);
+  console.log(callback);
+  //option中的start需要处理一下
+  //数据库查询时，跳过的是具体的数据的条数而不是页数
+  //获取跳过的条数
+  var skip = (option.start-1)*option.size;
+  //获取每页显示的条数
+  var size = option.size;
+  //获取排序的依据
+  var order= option.order;
 
+  //连接数据库
+  GetConn(function(err,client){
+    if(err){
+      console.log(err);
+      throw new Error("数据库连接失败");
+    }else{
+      //查询
+      var coll = client.db(dbName).collection(collection);
+      coll.find(filter).skip(skip).limit(size).sort(order).toArray(function(err,docs){
+        callback(err,docs);
+        client.close();
+      });
+    }
+  });
+
+}
 
 
 

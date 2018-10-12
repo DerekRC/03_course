@@ -1,0 +1,27 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>留言板</title>
+</head>
+<body>
+  <form action="/tijiao" method="POST">
+    用户名 ：<input type="text" name="username"><br>
+    留  言 ：<textarea name="message" cols="30" rows="10">请输入内容</textarea><br>
+    <input type="submit" value="提交">
+    <hr>
+  </form>   
+  <ul>
+      <% for(var i=0;i<msg.length;i++){%>
+      
+      <li style="border:1px solid black;margin-top:10px; padding-left:5px;width: 500px;list-style: none;">
+        <%= msg[i].name %>   说：<br>
+        <%= msg[i].txt %><br>
+        <%= msg[i].time %><br>
+      
+      </li>
+      <%}%>
+      
+    </ul>
+</body>
+</html>
