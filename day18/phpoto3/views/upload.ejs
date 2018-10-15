@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的相册</title>
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <style>
+    ul{
+      list-style: none;
+    }
+    .photo{
+      float: left;
+      margin-left:10px; 
+    }
+    form{
+      margin-left:100px;
+      margin-right:200px;
+    }
+    .form-control{
+      margin-top:20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">我的相册</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <a href="/toUpload">上传图片</a>
+          </li>
+          <li><a href="/newDir">新建相册</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div>
+      <form action="/doUpload" method="POST" enctype="multipart/form-data">
+          <h2>请选择上传的文件夹：</h2>
+          <select class="form-control" name="dirName">
+            <%for(var i=0;i<dirs.length;i++){%>
+
+    <option value="<%=dirs[i]%>"><%=dirs[i]%></option>
+
+            <%}%>
+          </select>
+          <div>
+            <h3>选择上传的图片:</h3>
+            <input type="file" name="pic">
+          </div>
+          <button type="submit" class="btn btn-default">上传</button>
+        </form>
+  </div>
+</body>
+
+</html>
