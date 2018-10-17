@@ -19,26 +19,43 @@
 <body>
   <h1>留言板</h1>
   <form action="/tijiao" >
-    姓名: 
+    <a href="/toUpload">
+    <% for(var i=0;i<users.length;i++){ %>
+      <% if(users[i].username==username){ %>
+        <img src="<%= users[i].photo %>" width="80px">
+      <% } %>
+    <% } %>
+    </a>
+   
     <div>
       <h2><%= username %></h2>
     </div>
     留言: <br>
     <textarea class="form-control" rows="3" name="message"></textarea>
     <input type="submit" class="btn btn-default" value="提交">
+    <a href="/logout" class="btn btn-default">退出登录</a>
   </form>
   <hr>
   <ul>
     <% for(var i=0;i<msg.length;i++){ %>
     <li>
+      <div>
+        <% for(var j=0;j<users.length;j++){ %>
+          <% if(msg[i].username==users[j].username){ %>
+            <img src="<%= users[j].photo %>" height="75px">
+          <% } %>
+        <% } %>
+      </div>
       <div><%= msg[i].username %> 说:</div>
       <div><%= msg[i].message %></div>
       <div><%= msg[i].time %></div>
+      <% if(msg[i].username==username){ %>
       <div>
         <a href="/delete?id=<%= msg[i]._id %>"> 删除</a>
         <a href="/update/<%= msg[i]._id %>"> 修改</a>
       </div>
       <hr>
+      <% } %>
     </li>
     <% } %>
   </ul>

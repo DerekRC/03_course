@@ -6,22 +6,24 @@ var bdParser = require('body-parser');
 //获取objectid对象
 var objiectId = require('mongodb').ObjectId;
 var session = require('express-session');
-
+//使用MD5加密
+var md5 = require('./md5/md5.js')
+//使用formidable
+var fd = require('formidable');
+var fs = require('fs');
+var gm = require('gm');
 
 app.listen(4000);
-
 
 //设置模板引擎
 app.set('view engine','ejs');
 
-
 //设置根目录
 app.use(express.static('./public'));
-
+app.use(express.static('./photos'));
 
 //设置请求解析方式
 app.use(bdParser.urlencoded({extended:true}));
-
 
 //配置session的解析
 app.use(session({
@@ -31,11 +33,9 @@ app.use(session({
   cookie:{maxAge:24*60*60*1000}
 }))
 
-
 //定义常量
 const message = 'message';//message集合
 const user = 'user';//user集合
-
 
 //判断用户是否登录，在其他请求处理之前判断
 app.use(function(req,res,next){             
@@ -51,7 +51,6 @@ app.use(function(req,res,next){
   }
 });
 
-
 // 访问 / 请求,跳转到首页
 app.get('/',function(req,res){
   // res.render('index');
@@ -66,10 +65,31 @@ app.get('/',function(req,res){
     }else{
       // console.log(docs);
       // 查询到结果,将结果返回给index页面
-      res.render('index',{msg:docs,username:username});
+      // res.render('index',{msg:docs,username:username});
+      //根据username查询用户信息(photo)
+      // db.find(user,{username:username},function(err,users){
+      //   if(err){
+      //     console.log(err);
+      //     res.render('error',{errMsg:"查询数据失败"});
+      //   }else{
+      //     res.render('index',{msg:docs,username:username,user:users[0]})
+      //   }
+      // })
+      //上面的方式最后只能返回一个用户的信息，还要在额外查询
+      // 所有用户的信息，简写成，直接查询所有用户的信息
+      db.findAll(user,function(err,users){
+          if(err){
+          console.log(err);
+          res.render('error',{errMsg:"查询数据失败"});
+        }else{
+          //查到所有的user数据
+          // 返回的数据：所有的user，所有的message,以及登录的用户名
+          res.render('index',{msg:docs,users:users,username:username});
+        }
+      });
     }
   })
-});
+}); 
 
 
 //处理get /tijiao 请求，将数据保存进数据库，同时刷新页面
@@ -108,8 +128,7 @@ app.get('/tijiao',function(req,res){
       res.redirect('/');
     }
   })
-})
-
+});
 
 //处理get的删除请求 /delete 删除某一条留言数据
 app.get('/delete',function(req,res){
@@ -201,6 +220,9 @@ app.post('/login',function(req,res){
   //获取请求参数
   var username = req.body.username;
   var password = req.body.password;
+  //加密password
+  password = md5.MD5(password);
+
   //设置查询用户信息的条件
   var filter = {username:username,password:password};
   //链接数据库开始查询
@@ -246,6 +268,8 @@ app.post('/regist',function(req,res){
     res.render('error',{errMsg:"密码不能为空"});
     return;
   }
+  //加密密码
+  password = md5.MD5(password);
   //判断用户名是否被占用
   db.find(user,{username:username},function(err,docs){
     if(err){
@@ -259,7 +283,9 @@ app.post('/regist',function(req,res){
     }else{
       //docs长度为0 ，空数组，没数据。用户名可以用
       //将用户名和密码保存进数据库
-      var data = {username:username,password:password};
+       //设置用户的头像
+       var photo='/images/2.jpg';
+       var data = {username:username,password:password,photo:photo}
       db.add(user,data,function(err,docs){
         if(err){
           console.log(err);
@@ -276,4 +302,106 @@ app.post('/regist',function(req,res){
       })
     }
   })
+})
+
+// 处理 /logout请求，退出登录状态
+app.get('/logout',function(req,res){
+  req.session.destroy(function(err){
+    if(err){
+      console.log(err);
+      res.render('error',{errMsg:"退出失败"});
+    }else{
+      //退出成功
+      res.redirect('/');
+    }
+  });
+});
+
+//处理get/toUpload请求，跳转到上传头像页面
+app.get('/toUpload',function(req,res){
+  res.render('upload');
+});
+
+//处理post  /duUpload请求，处理图片的上传
+app.post('/doUpload',function(req,res){
+  //处理图片上传的请求
+  //1.获取form对象
+  var form = new fd.IncomingForm();
+  //设置上传的路径
+  form.uploadDir = "./uploads";
+  //3.解析请求，获取图片
+  form.parse(req,function(err,fields,files){
+    if(err){
+      console.log(err);
+      res.render('error',{errMsg:"上传图片失败"});
+      return;
+    }
+    //处理files中的图片
+    var pic = files.pic;
+    //获取pic中需要的属性
+    var oldPath = pic.path;//旧路径
+    var name = pic.name;//图片名称
+    var arr = name.split('.');
+    var ext = arr[arr.length-1];//图片后缀名
+    //第一种方案用事件戳，第二种方案用户名
+    var username = req.session.username;//获取用户名
+    var time = sd.format(new Date(),"YYYYMMDD");
+    var newName = username+"_"+time+"."+ext;
+    console.log(newName);
+    var newPath = './photos/'+newName;
+    //改名字
+    fs.rename(oldPath,newPath,function(err){//改名字错了只有一个err，没有其他参数
+      if(err){
+        console.log(err);
+        res.render('error',{errMsg:"上传失败"});
+        return;
+      }
+      // res.redirect('/');
+      //将新的头像路径保存进数据库(不切图的情况，直接用原图做头像)
+      //photos目录已经设置为根目录，里面的文件可以直接获取
+      // db.modify(user,{username:username},{photo:newName},function(err,result){
+      //   if(err){
+      //     console.log(err);
+      //     res.render('error',{errMsg:"网络错误"});
+      //     return;
+      //   }
+      //   res.redirect('/');
+      // });
+  //将上传的图片传递到剪切图片的页面
+    res.render('cut',{pic:newName});
+    });
+  });
+});
+
+//处理/cut请求，将图片剪切
+app.get('/cut',function(req,res){
+  //获取参数
+  var x = parseInt(req.query.x);
+  var y = parseInt(req.query.y);
+  var w = parseInt(req.query.w);
+  var h = parseInt(req.query.h);
+  //获取图片
+  var pic = req.query.pic;
+  console.log(x,y,h,w,pic);
+  // res.end(); 
+  //剪切图片
+  gm('./photos/'+pic).crop(w,h,x,y).write('./photos/'+pic,function(err){
+    if(err){
+      console.log(err);
+      res.render('error',{msg:'剪切失败'});
+      return;
+    }
+    // res.redirect('/');
+    //将数据库中图片的路径更新
+    var username = req.session.username;
+    db.modify(user,{username:username},{photo:pic},function(err,result){
+      if(err){
+        console.log(err);
+        res.render('error',{errMsg:"更新数据失败"});
+        return;
+      }
+      //更新成功，返回首页
+      res.redirect('/');
+    })
+  });
 })
