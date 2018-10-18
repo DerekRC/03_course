@@ -1,0 +1,49 @@
+今日一刻
+    nodejs + express + angularjs + mongodb
+    mean开发
+    public    保存公共的图片，样式，以及脚本(设置为根目录)
+    views     保存视图的
+        |
+        |-- index.ejs 
+    scripts     保存自己定义的js文件
+    app.js      服务器启动文件
+
+    用到的模块：
+        express
+        ejs
+        mongodb
+
+1.创建服务，启动，访问localhost:4000
+    根据错误信息调整静态资源路径
+2.引入angular与angular-route，定义app
+3.创建yike。js，创建模块，调用run方法
+4.检查原文件，查看面板显示隐藏的规律
+    样式collapse决定面板是否显示或隐藏
+5.修改class为navs,header,body的写法
+    将其修改为用angularjs的语法书写
+    ng-class={navs:true,collapse:isShow}
+6.通过在$rootScope上绑定的isShow的值，来决定collapse类是否起效
+7.给菜单按钮添加单击事件ng-click="toggle()"
+    通过单击菜单按钮，来修改绑定的isShow的值
+8.导航栏文字的显示与隐藏 
+    通过isSHOW的值判断文字是否显示，然后在遍历所有的导航栏文字
+    通过修改其样式来达到显示隐藏的效果？
+9.创建控制器模块，引入文件，将该模块加入app的依赖中
+10.在控制器模块里创建控制器navs
+    在其中绑定导航栏的数据，在dl标签上添加ng-contriller指令
+    删除多余的标签，使用ng-repeat遍历navs
+11.修复锚点出错的情况
+12.给导航栏添加单击事件，实现4个功能
+    a header标题修改为被单机的导航标题
+    b body内容修改为被单击的视图内容
+    c 被单击导航标题，处于选中状态，其他为选中
+    d 面板整体向左移动
+
+
+()
+
+
+
+补充：
+    使用nodejs向其他服务器发送请求
+
