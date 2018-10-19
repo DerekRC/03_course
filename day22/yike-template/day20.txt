@@ -1,0 +1,8 @@
+今日一刻
+    nodejs + express + angularjs + mongodb
+    mean开发
+    public    保存公共的图片，样式，以及脚本(设置为根目录)
+    views     保存视图的
+        |
+        |-- index.ejs 
+    scripts  | 保存自己定义的js文件
