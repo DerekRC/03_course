@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //   var str = "嘿嘿嘿     哈哈哈哈";
+  //   // var str2 = str.replace((/\s*/g),"");
+  //   var str2 = str.trim();
+  //   // var str2 = str.replace((/^\s*|\s$/g),"");
+  //   // document.write(str);
+  //  document.write(str2);
+  // var showWindowHref = 'http://www.runoob.com/jquery/misc-trim.html?channelid=12333&name=xiaoming&age=23';
+  function showWindowHref(){
+    var sHref = window.location.href;
+    var args = sHref.split('?');
+    if(args[0] == sHref){
+        return "";
+    }
+    var arr = args[1].split('&');
+    var obj = {};
+    for(var i = 0;i< arr.length;i++){
+        var arg = arr[i].split('=');
+        obj[arg[0]] = arg[1];
+    }
+    return obj;
+}
+var href = showWindowHref(); // obj
+console.log(href['name']); // xiaoming
+
+  </script>
+</body>
+</html>

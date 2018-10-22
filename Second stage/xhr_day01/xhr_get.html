@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2>form 表单提交get请求</h2>
+  <form action="">
+    用户名:<input type="text" id="user"><br>
+    密 &nbsp;&nbsp;码:<input type="password" id="pwd"><br>
+    <input id='btn' type="button" value="提交表单" >
+  </form>
+  
+  <script>
+    //请求 01.php 的内容
+    btn.onclick = function(){
+      // 1.创建 xhr
+     var xhr = new XMLHttpRequest();
+     //2.建立练习
+     xhr.open('post','01.php');
+     //3.发送
+     xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+     xhr.send('name='+user.value+'&pwd='+pwd.value);
+    //  4.监听请求
+     xhr.onreadystatechange = function(){
+       if(xhr.readyState===4 && xhr.status ===200){
+         // 答应响应数据
+         console.log(xhr.responseText);
+       }
+     }
+    }
+
+    //
+  </script>
+</body>
+</html>

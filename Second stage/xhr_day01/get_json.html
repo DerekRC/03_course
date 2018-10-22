@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2>获取 json 数据</h2>
+  <button id="btn">点击获取json数据</button>
+  <script>
+    //获取 02.php 中的json数据
+    btn.onclick = function(){
+      //发送 Ajax 请求
+      var xhr = new XMLHttpRequest();
+      xhr.open('get','02.php');
+      xhr.send(null);
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState===4&&xhr.status===200){
+          console.log(JSON.parse(xhr.responseText));
+        }
+      }
+    }
+
+    
+
+  </script>
+</body>
+</html>
