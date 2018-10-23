@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./jq/jquery-3.2.1/jquery-3.2.1.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn" onclick="add()">点击使用$.get()方法</button>
+</body>
+<script>
+  //使用 $.get() 默认是 get 请求
+  // dataType : "json" 这个参数规定接受的数据类型必须是json格式，它帮我们把 json 转化为 js 对象  
+
+  function add() {
+    /*$.get('03.php', {
+      sname: '小明'
+    }, function (data) {
+      console.log(data);
+    },'json');*/
+    $.ajax({
+    url:'03.php',
+    data:{
+      sname:'小红',
+      sage:22
+    },
+    type:'get',
+    datatType:'json',
+    success:function(data){
+      console.log(data);
+    },
+    beforeSend: function(){
+      console.log('在send之前就执行的代码!');
+      //return false 可以阻止请求发送
+    // return false;
+    }
+    
+  })
+  }
+  //使用 $.ajax({}) 所有的参数都是被包裹在对象中
+  
+</script>
+
+</html>

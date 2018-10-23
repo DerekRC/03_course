@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">jsonp-跨域请求</button>
+  <script>
+      /* jsonp 的原生实现*/
+      btn.onclick = function(){
+        //创建一个script 标签
+        var s = document.createElement('script');
+        s.src = 'http://127.0.0.1/03_course/SecondStage/day02/04.php?callback=jsonp';
+        //追加到body中
+        document.body.appendChild(s);
+      }
+      // jsonp请求通过创建一个回调函数来接收参数
+      function jsonp(data){
+        //参数 data 就是响应内容
+        console.log(data);
+      }
+
+
+    </script>
+    
+</body>
+</html>

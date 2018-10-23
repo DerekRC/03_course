@@ -1,0 +1,67 @@
+回顾： Ajax原生实现
+      掘金 APP
+      面试题每天看十题
+      Ajax概念：悄悄的向服务器发送http请求
+      原生实现五步：
+      1.创建 xhr 对象
+      2.建立连接 get/post
+          get:参数跟在url问号的后面
+          post：参数传入send()中，并且在send之前要设置请求头
+      3.发送请求
+      4.监听请求 onreadystatechange
+      readyState: 4
+      status:  200 ok
+      5.响应 responseText
+
+  接收服务器端的数据类型
+    字符串 xml  json
+    JSON 的API
+        JSON.parse()
+        JSON.stringify()
+
+
+    Ajax 的 封装
+     就是把原生的Ajax请求5步封装成一个方法，直接调用
+
+  --JQuery  中的 Ajax
+  jQuery 给我们提供了 3 个 常用的方法
+  1. $.get();
+      参数：
+        url: 请求地址 (必须的)
+        data：当前请求的参数  根据需求 有就写没有就算 对象形式
+        dataType: 设置响应的数据类型  ‘json’
+       
+        success：请求成功的回调函数
+
+  2. $.post();
+      用法和 $.get() 一样，参数也一样
+  3. $.ajax();这个方法可以替代前两个  最强大 
+      参数
+        url : xxx
+        data: { key: value},
+        dataType: 'json',
+        async : 默认true
+        type: get/post
+        success: function(data){},
+        error: function(err){//打印错误信息},
+        beforeSend: function(){//请求发送之前的逻辑}
+
+--同源 & 跨域
+  浏览器有一个同源策略，所谓同源是指协议，域名，端口完全相同
+  同源策略就是浏览器的一种安全策略
+
+  跨域：
+    1.由于同源策略的显示，xhr(代表ajax请求) 只能允许请求当前源(协议，域名，端口相同)的资源
+    2.跨域的定义：只要请求的url与当前页面的url不同，即产生跨域。（协议，域名，端口有任何不同即不同）
+    3.跨域的解决方案：jsonp / cors
+      -jsonp ： jsonp是JSON对象的一种使用模式，它是非官方的解决方案。(比较主流的解决方案之一)。
+        jsonp 的实现方式就是利用 script 标签加载外部脚本的特点
+        jsonp它只支持get请求，需要前端和服务器端规定好
+
+
+
+
+
+
+
+

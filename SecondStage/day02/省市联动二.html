@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+    <form>
+      省:<select name="pro" id="pro" onchange="changepro()">
+	     </select>
+	  市:<select name="city" id="city" >
+	     </select>
+	 </form>
+     <script>
+	      var pro_arr = ['江苏','浙江','安徽']
+		  var city_arr = [
+		    ['南京','无锡','苏州'],
+			['嘉兴','宁波','杭州'],
+			['合肥','马鞍山','芜湖']
+		  ]
+		  var pro_sel = document.getElementById("pro");
+		  var city_sel = document.getElementById("city");
+		   //省份下拉
+		   for(key in pro_arr){
+		    pro_sel.innerHTML += "<option value="+key+">"+pro_arr[key]+"</option>";
+		   }
+		   //城市下拉
+		   for(key in city_arr[0]){
+		    city_sel.innerHTML += "<option value="+key+">"+city_arr[0][key]+"</option>";
+		   }
+		   //省份城市下标对应一致
+		   function changepro(){
+		     var index = pro_sel.selectedIndex;//找到option下标 
+			 var option = pro_sel.options[index];//选中option
+			 console.log(option.value);//存储省份下标
+			 console.log(option.innerHTML);//存储省份名称
+			 //对应城市清空
+			 city_sel.innerHTML = "";
+			 for(key in city_arr[option.value]){
+			    city_sel.innerHTML += "<option value="+key+">"+city_arr[option.value][key]+"</option>";
+			 }
+		   }
+	 </script>
+ </body>
+</html>
