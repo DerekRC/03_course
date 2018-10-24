@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //定义文本
+    var msg = '大家好，我四<%= name %>,我今年<%= age %>,我的工作是<%= work %>';
+    //定义一组数据
+    var xm = {
+      name: '赵月',
+      age:22,
+      work:'职业讨饭傻子'
+    };
+    //利用 正则表达式去匹配模版的语法，替换成我们真正的数据 str.replace()
+    var reg = /<%=\s*([^%>]+\S)\s*%>/g;
+    var matches = msg.match(reg);
+    console.log(matches);
+    // ["<%= name %>", "<%= age %>", "<%= work %>"]
+    msg = msg.replace(matches[0],xm.name);
+    msg = msg.replace(matches[1],xm.age);
+    msg = msg.replace(matches[2],xm.work);
+    console.log(msg)
+  </script>
+</body>
+</html>

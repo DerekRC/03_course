@@ -119,6 +119,7 @@ JS高级 -- ECMAScript  +  DOM  + BOM
           "歌手":["林俊杰","周杰伦","谢霆锋"],
           "演员":["黄渤","沈腾","徐峥"]
         }
+        
 
 JSON 的 API （JS）
   1.JSON.paser(): 将json字符串  转化为  JS对象.
@@ -127,5 +128,5 @@ JSON 的 API （JS）
   在客户端构建json格式的字符串
     
 
-
+ 
 

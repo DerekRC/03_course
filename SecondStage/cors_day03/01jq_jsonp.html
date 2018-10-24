@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="../xhr_day02/jq/jquery-3.2.1/jquery-3.2.1.js"></script>
+</head>
+<body>
+  <button id="btn">jq发送jsonp请求</button>
+  <script>
+    //使用$。ajax()来发起jsonp请求
+    $('#btn').bind('click',function(){
+       $.ajax({
+         url:'http://127.0.0.1/03_course/SecondStage/cors_day03/01.php1',
+         type:'GET',
+         dataType:'jsonp',
+         success:function(data){
+           console.log(data);
+         }
+      })
+  })
+   
+  </script>
+</body>
+</html>

@@ -58,10 +58,24 @@
         jsonp 的实现方式就是利用 script 标签加载外部脚本的特点
         jsonp它只支持get请求，需要前端和服务器端规定好
 
+    4.jQuery 中的 jsonp
+         直接使用 $.ajax() 方法来发起 jsonp 请求
+         url ， data ，type ，dataType：请求的数据类型 ‘json’
+         如果发起jsonp请求的话，设置dataType 为 'jsonp'就可以了
+         注意 ： 通过XMLHttpRequest 对象来的。  - ‘json’
+            创建 script 标签来发起请求的        -‘jsonp’
 
-
-
-
+-   CORS 跨越资源共享 (Cros Oeigin Resource Sharing)
+    1.官方给出的跨域解决方案。
+    2.CORS 的实现原理：
+        使用自定义的HTTP头部信息
+        设置responseHeaders 的字段：
+            Access-Contorl-Allow-Origin : * /
+    3.具体实现：
+        (1) 通过cors发起跨域请求和普通的Ajax请求是一样的
+            代码没有什么差别
+        (2) 在服务器端设置响应头，因此实现CORS的关键是在服务器端，
+            服务器端实现CORS接口，前端就可以跨域请求了
 
 
 

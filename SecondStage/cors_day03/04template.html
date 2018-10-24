@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./temp/template-native.js"></script>
+</head>
+<body>
+  <!-- 在script标签中定义模版 -->
+ <script id='temp01' type='text/html'>
+    <ul>
+      <li> <%= name %> </li>
+      <li> <%= skill %> </li>
+      <li>friend  
+        <ul>
+          <%for(var i=0;i<friend.length;i++){%>
+            <li> <%= friend[i] %> </li>
+          <%}%>
+        </ul>
+      </li>
+      <li>son
+          <ul>
+            <%for(var i=0;i<son.length;i++){%>
+              <li>名字:<%= son[i].name %> </li>
+              <li>老婆:<%= son[i].wife %> </li>
+              <li>年龄:<%= son[i].age %> </li>
+            <%}%>
+          </ul>
+      </li>
+    </ul>
+  </script>
+  <script>
+    //定义数据 Obj
+    var obj = {
+      name:'孙悟空',
+      skill:'龟派气功',
+      friend:['小林','龟仙人','天津饭','布尔玛'],
+      son:[{
+        name:'孙悟饭',
+        wife:'比丽迪',
+        age:20
+      },{
+        name:'孙悟天',
+        wife:'无',
+        age:12
+      }]
+    };
+    //包装成：
+    /*
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    */
+    //调用模版引擎方法
+    var dataHtml = template('temp01',obj);
+    //添加模版到页面
+    document.body.innerHTML = dataHtml;
+  </script>
+</body>
+</html>
