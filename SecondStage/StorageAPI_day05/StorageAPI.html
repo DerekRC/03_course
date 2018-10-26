@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //存储的目标是对象
+    var obj = {
+      sname: '小米昂',
+      swork: '前端开发',
+    };
+    //localStorage.setItem(key,value)
+    var data = JSON.stringify(obj);
+    localStorage.setItem('xm', data);
+    //取数据
+    var xmData = localStorage.getItem('xm');
+    console.log(xmData);
+    /* 封装一个方法，存储数据都是对象的形式 */
+    var myLS = {
+      //取数据方法
+      get: function(key){
+        var val = JSON.parse(localStorage.getItem(key));
+        if(!val){
+          return new Error('key不存在');
+        }
+        //判断时间  days 有没有 过期
+        if(new Date().getTime() > val.endTime ){
+          val = null;
+          // 调用 localStorage 的消除方法
+          localStorage.removeItem(key);
+        }
+        return val.data;
+      },
+      //设置值的方法 days:设置有效时间 
+      set: function(key,value,days){ 
+        var item = {data: value}
+        //判断 days 参数 存不存在
+        if(days){
+          item.endTime = new Date().getTime() + days*24*3600*1000;//单位是ms毫秒
+        }
+         localStorage.setItem(key,JSON.stringify(item));
+      }
+    }
+    //使用 myLS
+    myLS.set('xw',{
+      sname1:'小我',
+      age1: 201
+    },10);
+    console.log(myLS.get('xw'))
+  </script>
+</body>
+
+</html>

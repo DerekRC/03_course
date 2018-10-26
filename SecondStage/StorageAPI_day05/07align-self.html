@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .d1 {
+      display: flex;
+    }
+
+    .d1{
+      margin: 10px;
+      width: 620px;
+      height: 300px;
+      background: #ddd;
+    }
+    .item1,
+    .item2,
+    .item3 {
+      width: 120px;
+      height: 280px;
+      background: #bdd8f5;
+      margin: 10px;
+      color: #333;
+      text-align: center;
+      font-size: 60px;
+      align-self: baseline;
+      line-height: 280px;
+    }
+    .item1{
+      order:1;
+      /* flex-grow:1; */
+      /* flex-shrink:1; */
+      flex:2 2 auto;
+      font-size: 12px;
+    }
+    .item2{
+      order:2;
+      /* flex-grow:9999; */
+      flex-shrink:1;
+      /* align-self: center; */
+      font-size: 30px;
+    }
+    .item3{
+      order:3;
+      /* flex-grow:1; */
+      flex-shrink:2;
+      /* align-self:flex-end; */
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="d1">
+    <div class='item1'>1 - 1</div>
+    <div class='item2'>1 - 2</div>
+    <div class='item3'>1 - 3</div>
+  </div>
+</body>
+
+</html>

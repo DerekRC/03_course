@@ -1,0 +1,100 @@
+web 存储 （H5） idnexDB
+    H5 给我们新增了两个本地存储API 分别是LocalStorage
+    SessionStorage,
+
+1   LocalStorage的特点：
+    (1) 可以长期保存数据
+    (2) 保存数据最大 5MB
+    (3) 只能在客户端使用，不和服务器端通信
+    (4) 接口封装较好
+2.  localStorage 的 API
+    (1) 读取值：localStorage.getItem('index_ls_qid')
+               localStorage.getItem(key)
+    (2) 设置值：localStorage.setItem('name01','this is name01');
+                localStorage.setItem(key,value);
+    (3) 删除值：localStorage.removeItem('name01')
+                localStorage.removeItem(key)
+    (4) 获取制定的key：localStorage.key(index);
+    (5) 删除全部：localStorage.clear();
+
+面向对象：封装 继承 多态
+
+
+3.  sessionStorage:特点：
+     保存的数据用户浏览器的一次会话：当会话结束，数据被清除
+     它的API和localStorage是一样的，使用方式也一样。
+     sessionStorage可以有效的对表单信息进行维护，比如刷新表单，数据不丢失
+
+- web 移动端
+    移动端的开发大致分为两种
+    1. H5 页面 /webApp  （vue）
+    2.App ( React-native(react) / weex(vue) );
+
+    页面运行在移动端设备上  -web移动端开发
+    1.设备           智能手机
+    2.操作系统       IOS WindowPhone  安卓  塞班  黑莓 。。。。
+    3。浏览器        safari  chrome  UC  QQ  百度  搜狗  360
+    4.浏览器内核     -webkit-
+
+    移动端事件   - touch
+        移动端有一组touch事件
+            touchstart  : 开始触摸
+            touchmove   : 滑动
+            touchend    : 触摸结束
+            touchCamcel : 被迫结束滑动事件
+
+- 移动端布局 Flex 
+    W3C 官方称为 CSS弹性盒子布局(Flexbox),是在CSS3中定义的一个
+    新的布局模式。
+
+    1.  flexbox  可以控制在容器内子元素的排列方式，对齐方式
+        以及排序顺序，即使子元素的尺寸是未知的或者动态的情况。
+    2.  flexbox 特点： 简单灵活，几行代码就可实现页面的布局
+    3.  flexbox 的组成：
+            它是由容器（container）和容器内的直接子元素（flexitem）
+            组成。任何一个容器都可以指定为flex布局，这样容器内部的元
+            素就可以使用 flex 来进行布局
+            
+            **学习 flex 就是学习 容器属性 和 子项属性**
+            Container（容器）: 
+            （1）display : flex / inline-flex 
+            （2） flex-diraction: 主要决定了子项在容器中排列的方式
+                    row | row-reverse | column | column-reverse
+                row：表示 flex 子项横向从左向右排列 (默认的排列方式)
+                row-reverse：横向从右向左的排列
+                column：以纵向且从从上往下排列
+                column-reverse：以纵向且从下往上排列
+            （3） flex-wrap: nowrap | wrap | wrap-reverse
+                  是否让容器内的子项保持在一行
+                  nowrap：容器内的子项保存在一行 (默认的)
+                  wrap：和  nowrap  相反 
+                  wrap-reverse：不仅换行且反向排列
+            （4） flex-flow:该属性是 flex-diraction 和 flex-wrap
+                    属性的简写方式
+            （5）justify-content:flex-start | flex-end | center 
+                space-between | space-around
+                该属性是决定子项的对齐方式
+                flex-start：子项在横轴开始方向对齐
+                flex-end：子项在横轴结尾方向对齐
+                center：子项在横轴居中方向对齐
+                space-between：子项在横轴两端对齐
+                space-around：子项在横轴等间距对齐
+
+子项（flex item）上的属性：
+    （1） order：int 该属性接收一个整数值(负数也生效)，数值越大的子项排在越后
+    （2） flex-grow: 默认值 0
+         该属性的值是整数，负数无效，决定了该子项占用多少容器内可用的空间。
+    （3） flex-shrink:默认值 1
+        定义了子项的缩小比例：如果父元素空间不足，该子项将缩小，负值无效。
+    （4）flex-basis ：默认值 auto
+        指定了子项的宽度
+    （5）flex：它是 flex-grow | flex-shrink | flex-basis 的简写方式。默认值：0  1   auto
+        建议使用 flex 属性 代码更简洁
+    (6) align-self:auto | flex-start | flex-end |center | baseline |stretch
+            该属性运行单个子项与其他子项有不同的对齐方式 
+            默认值是auto
+    （7） 在 flexbox 布局中 float，clear， vertical-align 属性对子项都是无效的
+
+    作业：让一个元素在其父元素中居中垂直对齐
+        三种实现方式
+
