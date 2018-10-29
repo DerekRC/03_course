@@ -11,8 +11,8 @@ var ggl = {
   c1: null, // 获取画布元素
   ctx: null, // 获取画布对象
   c1_width: 376,
-  c1_height: 82,
-  ismousedown: false, // 判断当前鼠标是否按下
+  c1_height: 82, 
+  ismousedown: false,// 判断当前鼠标是否按下
   IS_OK: false, // 判断是否刮去一半面积以上
   num: 1, // 当前刮次数
   // 初始化方法

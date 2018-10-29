@@ -89,7 +89,7 @@ function xhr(obj){
       //执行回调函数
       success(xhr.responseText);
     }
-  }
+  }  
 }
 
 
