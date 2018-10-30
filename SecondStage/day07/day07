@@ -1,0 +1,98 @@
+-响应式页面(BootStrap)
+1.什么是响应式页面？
+  可以在各种不同的分辨率和尺寸的设备下浏览的页面，并且都有不错的浏览体验。
+2.浏览编写响应页面
+  1.设置 meta 标签 viewport（视口）
+  2.避免绝对单位(px)，使用相对单位(%,em,auto,rem);
+  3.使用流式布局(float)
+  4.图片大小自适应：img{ max-width:100%; }
+  5.媒体查询 -- CSS Media Query 技术
+
+
+3.Media Query
+  根据浏览器屏幕的特征，有选择的执行CSS样式
+  Media：媒体 - 指的是浏览网页的设备(Pad,Phone,Pc,Tv,屏幕阅读器等等)
+  Query：查询 - 查询当前浏览设备的特性：宽度，高度，分辨率，类型、根据这些特性，执行不同的CSS。
+  用法：
+    <style>
+      @media screen and (min-width:899px) {
+      .d1 {
+        border: 1px solid #ddd;
+        background: #ddd;
+        color: #28a;
+      }
+    }
+
+    /* 屏幕分辨率 在 900px-600px 之间 */
+    @media screen and (max-width:900px) and (min-width:600px) {
+      .d1 {
+        border: 2px solid #a33;
+        background: #fdd;
+        color: #822;
+        padding: 4px;
+      }
+    }
+
+    /* 屏幕分辨率 小于 599px */
+    @media screen and (max-width:599px) {
+      .d1 {
+        border: none;
+        background: #ddf;
+        color: #228;
+        padding: 8px;
+      }
+    }
+    </style>
+   
+Twitter - BootStrap
+1.它是一个CSS样式框架，适用于制作移动设备优先的响应式网页页面。
+2.使用  Boot  提供的模版 - Bootcss.com
+3.Boot 主要涉及的内容？
+    1.HTML  :   为H5已有的标签扩展了一些自定义属性。
+                data-属性名 data-toggle = '值1'
+    2.CSS   :   CSS Reset(样式重置:在不同的浏览器保持样式一致性) + 上千个class 
+    3.JS    :   基于 JQuery 提供了十几个插件  
+  
+-全局CSS样式 - 栅格系统 Grid Layout
+1.所有的行和列必须放在容器中( .container | .container-fluid )
+2.容器分为多行row，一行分为12列col。
+3.网页内容只能才在col中
+4.col(列) 中可以在嵌套 row(行)
+5.col 分为四大类 col-lg | col-md | col-sm | col-xs  代表不同的分辨率下列应该占几列
+6.col-md-值(n)：n的范围是 1~12 对少1列 最多12列 col-md-12  在md分辨率下占满一列 100%
+7.可以为一个列制定不同屏幕下的不同宽度
+         屏幕宽度                                      container 容器宽度 4个值
+    当屏幕分辨率 大于   1200px(超大PC) 的时候  称为 lg          1170px;
+    1200px ~ 992px     md(普通宽度)                           970px;
+    992px ~ 768px      sm(小一号宽度)                         750px;
+    小于 768px          xs                                   auto;
+  container-fluid(特殊)不管在任何分辨率下都是自适应             auto(100%);
+
+8.隐藏col(列)
+    hidden-lg  -在超大PC下隐藏
+    hidden-md  -在普通pc下隐藏
+    hidden-sm  -在pad下隐藏
+    hidden-xs  -在phone下隐藏
+9. 偏移 col(列)
+    col-md-offset  -1 ~ 12 当前偏移的列数 1~12之间
+
+-Bootlint 工具
+  它是一个检测工具，Boot官方提供的，用于检测Boot页面的HTML，CSS错误(默认情况下检测不出来)
+
+-组件 -图标字体
+1.图标字体：boot提供了glyphicons图标字体供我们使用 250+
+2.图标字体本质不是图片，是字体(web字体),凡是可以使用字体的地方都可以用图标
+3.glyphicons图标字体只能用于空元素，-不包含子元素或者内容的元素。
+  span class = "glyphicon" /span
+
+-下拉菜单
+  HTML结构
+    相对定位的
+      <div>
+        <a class="btn" data-toggle="dropdown">触发按钮</a>
+        <ul> 绝对定位
+          <li>。。。。。</li>
+        </ul>
+      </div>
+
+

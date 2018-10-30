@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* CSS reset */
+    body {
+      font-family: 'Microsoft yehei';
+      margin: 0;
+      padding: 0;
+
+    }
+
+    /* 屏幕分辨率 大于 901px */
+    @media screen and (min-width:899px) {
+      .d1 {
+        border: 1px solid #ddd;
+        background: #ddd;
+        color: #28a;
+      }
+    }
+
+    /* 屏幕分辨率 在 900px-600px 之间 */
+    @media screen and (max-width:900px) and (min-width:600px) {
+      .d1 {
+        border: 2px solid #a33;
+        background: #fdd;
+        color: #822;
+        padding: 4px;
+      }
+    }
+
+    /* 屏幕分辨率 小于 599px */
+    @media screen and (max-width:599px) {
+      .d1 {
+        border: none;
+        background: #ddf;
+        color: #228;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1> CS3 Media Query </h1>
+  <div class="d1">
+    <!-- 假文：lorem + tab -->
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed ut ullam repellendus porro omnis molestiae? Vitae
+    nihil officia dolorum perferendis, ipsa rerum iusto nobis quaerat nesciunt, modi repellat natus rem.
+    Illum dolor fugit error voluptates dolore, debitis aliquid iure ullam possimus fuga excepturi? Voluptatem
+    voluptatibus nemo optio, hic ducimus iusto placeat itaque tempora sunt eius ipsam, quis reprehenderit distinctio.
+    Est.
+    Velit voluptates quasi maxime officiis? Accusantium nam tempora cumque delectus temporibus id expedita libero esse
+    officiis saepe quia quam, itaque magni debitis beatae similique corrupti at. Rem aut fuga ex.
+  </div>
+</body>
+
+</html>
