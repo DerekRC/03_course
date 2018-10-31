@@ -1,0 +1,37 @@
+1.Bootstrap 移动端优先的响应式框架
+    响应式：CSS3 的媒体查询技术 Media Query
+      1.boot全局样式 - 栅格系统
+        container 容器   lg  md sm  xs 
+        有行的概念 row
+        分为 12 列的 col-md- * 1~12
+      2.字体图标/图标字体
+          boot 免费给我们提供的 250+ 个 图标字体 
+          glyphicons
+          web 字体
+          @font-face {
+            font-family : 'Glyphicons Halflings';
+          }
+          .glyphicons {
+            font-family: 'Glyphicons Halflings'
+          }
+
+-组件 - 响应式导航条
+1.在PC上默认显示所有内容 在移动端默认显示LOGO和菜单折叠按钮
+  只有单机按钮才能展开或隐藏所有的导航内容
+2.  基础Class   :  .navbar
+    导航条定位  :   相对定位
+                   固定定位  .navbar-fixed-top/bottom
+
+-Boot 插件
+  1.模态框 （modal）
+    在父页面弹出一个子窗口，子窗口不关闭的情况下，
+    父页面就无法获得焦点，同时父子窗口之间可以传递数据
+    alert() / prompt()
+  2.模态框的结构
+    
+-Boot 定制 Less
+1.Less 是一门CSS预处理语言(sass,stylus),它是动态的CSS，
+  在语法层面增加了变量 ，函数， 混合(mixin)等功能
+  让CSS更易维护，扩展 Less可以运行在浏览器或 node 服务器
+2.Less文件的后缀就是 .less 通过编写less文件生成CSS文件
+  

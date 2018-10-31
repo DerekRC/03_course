@@ -1,0 +1,104 @@
+/* less基础语法 */
+//注释
+/* 1.变量的定义
+    使用@ + 变量名 ： 值；
+*/
+//全局变量base，全局可用
+@base:#898998;
+div{
+  color:@base;
+}
+
+
+//变量计算
+@gray:#999;
+@width:100px;
+div{
+  background: #999 / @gray;
+  width: @width*2;
+}
+
+
+//2.变量的混合(mixin)样式组合
+.arc{
+  background: #333;
+  border-radius:50%;
+}
+
+
+div{
+  width:200px;
+  height: 200px;
+  .arc;
+  .round;
+}
+
+
+div{
+  width:300px;
+  height: 300px;
+  .arc;
+  .round(3px);
+}
+//定义了一个公共样式
+.round(@border:1px){//设置默认值
+  border:@border solid #ddd;
+}
+
+
+//3.嵌套规则
+//标签层级结构清晰可见，减少代码量
+//div > p | span 
+//      p > a
+div{
+  font-size: 20px;
+  position: relative;
+  p{
+  width:100px;
+  height: 100px;
+  line-height: 100p
+  } 
+  a{
+  text-decoration: none;
+  color: red;
+    &:hover{
+    color: blue;
+    }
+  }
+}
+
+
+//作用域
+//less 的作用域就是全局变量和局部变量的作用域
+@con:red;//全局作用域
+.page{
+  @con:black;//局部作用域
+  .mian{
+    color: @con;
+  }
+}
+
+
+.header{
+  background: @con;
+}
+
+//在 less 中使用 CSS3 的 Media Query
+div{
+  @media  (max-width:400px) {
+    background: #333;
+}
+@media (min-width:401px) and (max-width:900px) {
+  background: #ddd;
+}
+@media (min-width:901px) {
+  background: #fff;
+}
+}
+
+//@import 指令
+//在less中允许我们引入外部文件，使用@import 指令
+//01.css | 02.css 实现模块化  AMD CMD   common。js
+
+
+

@@ -1,0 +1,66 @@
+/* less基础语法 */
+/* 1.变量的定义
+    使用@ + 变量名 ： 值；
+*/
+div {
+  color: #898998;
+}
+div {
+  background: #010101;
+  width: 200px;
+}
+.arc {
+  background: #333;
+  border-radius: 50%;
+}
+div {
+  width: 200px;
+  height: 200px;
+  background: #333;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+}
+div {
+  width: 300px;
+  height: 300px;
+  background: #333;
+  border-radius: 50%;
+  border: 3px solid #ddd;
+}
+div {
+  font-size: 20px;
+  position: relative;
+}
+div p {
+  width: 100px;
+  height: 100px;
+  line-height: 100p;
+}
+div a {
+  text-decoration: none;
+  color: red;
+}
+div a:hover {
+  color: blue;
+}
+.page .mian {
+  color: black;
+}
+.header {
+  background: red;
+}
+@media (max-width: 400px) {
+  div {
+    background: #333;
+  }
+}
+@media (min-width: 401px) and (max-width: 900px) {
+  div {
+    background: #ddd;
+  }
+}
+@media (min-width: 901px) {
+  div {
+    background: #fff;
+  }
+}

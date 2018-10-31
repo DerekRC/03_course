@@ -1,0 +1,15 @@
+dialog : 定位  固定的宽
+fade: 动态效果
+form-control:
+form-group:
+modal-content
+navbar-collapse
+collapsed
+data-toggle="" :但凡是展开 点击 的切换效果都是这个
+data-target=" :跳转到制定ID名的div
+modal:模态框
+dropdown：下来菜单
+<span class="close" data-dismiss="modal">&times;</span>
+模态框关闭叉叉  放在div下第一行
+<div class="modal-footer">
+模态框下添加按钮

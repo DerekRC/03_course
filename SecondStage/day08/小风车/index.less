@@ -1,0 +1,49 @@
+@nav-font:16px;
+@center:center;
+body{
+  margin-top:60px;
+}
+#box{
+  font-size:@nav-font;
+}
+#box>ul>li>a{
+  display: block;
+  line-height: 37px;
+  width: 124px;
+  text-align: center;
+  color:#999;
+  text-align: @nav-font;
+}
+#box>ul>li>a:hover{
+  background: #52b6ec;
+  color:#fff;
+}
+
+@media screen and (min-width:901px) {
+  .navbar-img{
+    display: inline-block;
+    background:url(./img/logo.png) no-repeat;
+    width:360px;
+    height: 60px;
+
+  }
+}
+
+@media (max-width:899px) and (min-width:600px) {
+  .navbar-img{
+    display: inline-block;
+    background:url(./img/logo_min.png) no-repeat;
+    width:120px;
+    height: 60px;
+  }
+}
+
+@media screen and (max-width:599px) {
+  .navbar-img{
+    display: inline-block;
+    background:url(./img/logo_min.png) no-repeat;
+    width:120px;
+    height: 60px;
+  }
+}
+
