@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // ES6 字符串的扩展
+    //支持换行，不需要使用  加号 +
+    const str = '我当你们是兄弟 ';
+    const strr = '爸爸'
+    const msg = str + `你们
+    却把我
+    当作${strr}`;
+    console.log(msg);
+
+    const ul = `
+    <ul>
+        <li>赵大</li>
+        <li>月傻</li>
+        <li>是逼</li>
+    </ul>`;
+    console.log(ul);
+    
+    //字符串的API
+    // str.includes()  包括的意思  用来查找字符  可以代替 indexOf()
+    //返回值：true / false
+    const w = 'world';
+    const str1 = 'I can not give you the world,but I give you my world';
+    const bool = str1.includes(w);
+    console.log(bool);// true  
+
+    //str.repeat(); 重复指定的字符
+    let rep = w.repeat(3);// ** // &&
+    console.log(rep)
+
+
+
+
+
+  </script>
+</body>
+
+</html>

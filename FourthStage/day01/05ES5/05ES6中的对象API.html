@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 变量直接赋值给对象
+    //例子1 
+    let sname = 'JavaScript';
+    let skill = '-ES6';
+    const obj111 = {
+      sname,
+      skill
+    }
+    console.log(obj111);
+
+    //对象的方法
+    //Object.is(obj1,obj2) 用 来 比 较 两 个 对 象 是 否 相 等
+    // {} === {} //false 每个对象的地址都是不一样的
+    NaN === NaN;//false  自己都不是自己
+    Object.is({},{});//false
+    Object.is('foo','foo');//true
+    Object.is('NaN','NaN');//true
+
+    //Object.assign(obj,obj1,obj2,...) 用来合并两个或多个对象
+    //此方法的第一个参数是目标对象，后面的参数是原对象
+    const obj = {
+      a : '如懿传'
+    };
+    const obj1 = {
+      b : '延禧攻略'
+    };
+    const obj2 = {
+      c : '甄嬛传'
+    };
+    //合并对象
+   const newObj = Object.assign({},obj,obj1,obj2);
+   console.log(newObj,obj,obj1,obj2)
+  </script>
+</body>
+</html>

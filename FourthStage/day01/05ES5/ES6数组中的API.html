@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 数组中的API */
+    //1.forEach(); forEach 和  for 循 环 功 能 一 样 ， 不 能 使 用 return 强 制 退 出   
+    // forEach(function(val,index,arr){}) 循环遍历的每一个元素  元素下标 循环遍历的数组
+    const arr = [1,2,3];
+    arr.forEach(function(val,index,arr){
+      arr[index] = val + 1;
+      // console.log(val); //1 2 3
+      // console.log(index); // 0 1 2
+      // console.log(arr); // [1,2,3]
+    });
+    console.log(arr);
+
+    // 2 map()
+    // map 方 法 一 般 用 来 处 理 修 改 某 个 数 组 中 的 某 个 值 ，修 改 完  之后 返 回 一 个 新 的  数 组 
+    //let newArr = arr.map(function(val,index,arr){})
+    // 返回一个新数组的时候就要用 map()
+    let newArr = arr.map(function(val,index){
+      return val + 1;
+    });
+    console.log(newArr);
+
+    // 3 find()
+    //find 方 法 是 用 来 查 找 数 组 中 的 目 标 元 素 ， 找 到 返 回 该 元素 ， 没 找 到 返 回  undefined 语 法 同 上 
+    // find  的 内 部 只 写 了 一 个 循 环   只 要 符  合条 件 就 直 接 退 出 ， 不 继 续 循 环 
+     let value = newArr.find(function(val,index,arr){
+        return  val > 3;
+    });
+    console.log(value);//4  找到就返回 只循环了一次 
+
+    // 4.findIndex()
+    // findIndex 方 法 用 来 查 找 目 标 元 素 的 下 标 ， 找到 就 返 回 下 标 ， 找 不 到返 回  -1
+    let index = newArr.findIndex(function(val,index){
+      return val ===4;
+    })
+    console.log(index);//1
+
+    //5 includes(value,index) index可以是负数
+    //includes 方法 与字符串的方法类似，查看数组是否包含某个元素，该方法可以代替indexOf()
+    let bool = arr.includes(2);
+    console.log(bool);//true 
+    
+  </script>
+</body>
+</html>
